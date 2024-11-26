@@ -40,12 +40,56 @@ The dataset includes the following attributes:
    - Highlight the most significant factors influencing premiums.
    - Provide actionable insights for both customers and insurance providers.
 
-## Importance
-This project is a step toward solving a crucial financial problem by empowering individuals and businesses with predictive analytics. Understanding premium costs will enable people to make better financial decisions and manage healthcare expenses effectively.
 
----
+## Run predict.py
 
-## Tools and Techniques
-- **Python Libraries**: Pandas, NumPy, Matplotlib, Seaborn, Scikit-learn.
-- **Machine Learning Models**: Linear Regression, Decision Tree Regressor, Random Forest, Gradient Boosting Models.
-- **Performance Metrics**: Mean Absolute Error (MAE), Mean Squared Error (MSE), R² score.
+To run this code from the console, follow these steps:
+
+1. Ensure you have Python installed on your system. This code requires Python 3.x.
+2. Ensure you have the `ridge_model.bin` file in the same directory as `predict.py`. This file should contain the serialized model and test data.
+3. Open a terminal or command prompt and navigate to the directory where `app.py` is located.
+4. Run the application by executing the following command:
+   ```
+   python predict.py
+   ```
+6. The Flask application will start, and you should see output indicating that the server is running on `http://0.0.0.0:9696`.
+7. You can now send POST requests to `http://0.0.0.0:9696/predict` with JSON data containing customer information to get price predictions.
+
+
+## Notebook: `predict_test.ipynb`
+
+The `predict_test.ipynb` notebook is designed to demonstrate the prediction capabilities of the trained machine learning model on new, unseen data. This notebook includes the following sections:
+
+1. **Loading the Model**:
+   - Load the pre-trained model from the saved file.
+   - Ensure all necessary dependencies and libraries are imported.
+
+2. **Preparing Test Data**:
+   - Load the test dataset containing new individuals' health parameters.
+   - Perform any required preprocessing steps to match the training data format.
+
+3. **Making Predictions**:
+   - Use the loaded model to predict the insurance premiums for the test dataset.
+   - Store and display the predicted premium values alongside the test data.
+
+This notebook serves as a practical guide for applying the developed model to real-world data, ensuring that the predictions are accurate and reliable.
+
+# To build and run the Docker image for the Medical Insurance Prediction project, follow these steps:
+
+1. **Build the Docker Image**:
+   - Navigate to the project directory where the Dockerfile is located.
+   - Run the following command to build the Docker image and tag it as `insurance`:
+     ```sh
+     docker build -t insurance .
+     ```
+
+2. **Run the Docker Container**:
+   - After building the image, run the container interactively and remove it after it exits:
+     ```sh
+     docker run -it --rm insurance
+     ```
+This will start the server and then you can make post request to it. 
+
+3. **Execute the Jupyter Notebook**:
+   - Navigate to the notebook named `predict_test.ipynb`.
+   - Open the notebook and run all cells to perform the predictions.
